@@ -1,6 +1,6 @@
 import { app } from './server.js'
 import * as dotenv from 'dotenv'
-import config from './config'
+import config from './config/index.js'
 
 process.on('unhandledRejection', () => {
     console.error('There was an unhandled Recjection')
