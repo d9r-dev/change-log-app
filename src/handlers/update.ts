@@ -1,6 +1,6 @@
 import prisma from '../db'
 import { Response } from 'express'
-import { ICustomRequest } from '../types/interfaces'
+import { ICustomRequest } from '../types/interfaces.js'
 import { Product, Update } from '@prisma/client'
 
 interface IProductWithUpdates extends Product {

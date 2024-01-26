@@ -7,15 +7,15 @@ import {
     getOneproduct,
     getProducts,
     updateProduct,
-} from './handlers/product'
+} from './handlers/product.js'
 import {
     createUpdate,
     deleteUpdate,
     getOneUpdate,
     getUpdates,
     updateUpdate,
-} from './handlers/update'
-import { ICustomError, ICustomRequest } from './types/interfaces'
+} from './handlers/update.js'
+import { ICustomError, ICustomRequest } from './types/interfaces.js'
 
 const router = Router()
 
