@@ -1,6 +1,6 @@
 import { NextFunction, Response, Router } from 'express'
 import { body, oneOf } from 'express-validator'
-import { handleInputErrors } from './modules/middlewares'
+import { handleInputErrors } from './modules/middlewares.js'
 import {
     createProduct,
     deleteProduct,
