@@ -1,9 +1,9 @@
 import express, { Response, NextFunction } from 'express'
-import router from './router.ts'
+import router from './router.js'
 import morgan from 'morgan'
-import { protect } from './modules/auth.ts'
-import { createNewUser, signIn } from './handlers/user.ts'
-import { ICustomError, ICustomRequest } from './types/interfaces.ts'
+import { protect } from './modules/auth.js'
+import { createNewUser, signIn } from './handlers/user.js'
+import { ICustomError, ICustomRequest } from './types/interfaces.js'
 
 export const app = express()
 

@@ -1,6 +1,6 @@
 import { NextFunction, Response } from 'express'
-import prisma from '../db'
-import { ICustomRequest } from '../types/interfaces'
+import prisma from '../db.js'
+import { ICustomRequest } from '../types/interfaces.js'
 import { Product, User } from '@prisma/client'
 
 interface IUserWithProducts extends User {

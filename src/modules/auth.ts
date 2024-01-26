@@ -2,7 +2,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken'
 import * as bcrypt from 'bcrypt'
 import { NextFunction, Request, Response } from 'express';
 
-import { ICustomRequest } from '../types/interfaces';
+import { ICustomRequest } from '../types/interfaces.js';
 import { User } from '@prisma/client';
 
 export const createJWT = (user: { id: string; username: string }) => {

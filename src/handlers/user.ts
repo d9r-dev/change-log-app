@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
-import prisma from '../db'
-import { comparePasswords, createJWT, hashPassword } from '../modules/auth'
-import { ICustomError } from '../types/interfaces'
+import prisma from '../db.js'
+import { comparePasswords, createJWT, hashPassword } from '../modules/auth.js'
+import { ICustomError } from '../types/interfaces.js'
 
 export const createNewUser = async (req: Request, res: Response, next: NextFunction) => {
     let user
