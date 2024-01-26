@@ -6,11 +6,11 @@ const stage = process.env.STAGE || 'local'
 let envConfig
 
 if (stage === 'production') {
-    envConfig = require('./prod').default
+    envConfig = import('./prod.js')
 } else if (stage === 'testing') {
-    envConfig = require("./testing").default
+    envConfig = import("./testing.js")
 } else {
-    envConfig = require('./local').default
+    envConfig = import('./local.js')
 }
 
 export default merge({
