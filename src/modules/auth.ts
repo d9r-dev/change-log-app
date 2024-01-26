@@ -3,6 +3,7 @@ import * as bcrypt from 'bcrypt'
 import { NextFunction, Request, Response } from 'express';
 
 import { ICustomRequest } from '../types/interfaces';
+import { User } from '@prisma/client';
 
 export const createJWT = (user: { id: string; username: string }) => {
     if (!process.env.JWT_SECRET) {
@@ -38,7 +39,7 @@ export const protect = (req: ICustomRequest, res: Response, next: NextFunction) 
             console.error('No JWT_SECRET set in envirnoment')
             return
         }
-        const user = jwt.verify(token, process.env.JWT_SECRET)
+        const user: User = jwt.verify(token, process.env.JWT_SECRET) as User;
         req.user = user
         next()
     } catch (e) {

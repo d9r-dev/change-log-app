@@ -1,4 +1,4 @@
-import { Response } from 'express'
+import { NextFunction, Response } from 'express'
 import prisma from '../db'
 import { ICustomRequest } from '../types/interfaces'
 import { Product, User } from '@prisma/client'
@@ -25,21 +25,25 @@ export const getProducts = async (req: ICustomRequest, res: Response) => {
     res.json({ data: user.Product })
 }
 
-export const getOneproduct = async (req: ICustomRequest, res: Response) => {
-    const id = req.params.id
+export const getOneproduct = async (req: ICustomRequest, res: Response, next: NextFunction) => {
+    try {
+        const id = req.params.id
 
-    const product = await prisma.product.findFirst({
-        where: {
-            id,
-            belongsToId: req.user?.id,
-        },
-    })
+        const product = await prisma.product.findFirst({
+            where: {
+                id,
+                belongsToId: req.user?.id,
+            },
+        })
 
-    res.json({ data: product })
+        res.json({ data: product })
+    } catch(e) {
+        next(e);
+    }
 }
 
 export const createProduct = async (req: ICustomRequest, res: Response) => {
-    if(!req.user) {
+    if (!req.user) {
         return;
     }
     const product = await prisma.product.create({

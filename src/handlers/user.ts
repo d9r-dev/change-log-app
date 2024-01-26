@@ -1,8 +1,9 @@
-import { Request, Response } from 'express'
+import { NextFunction, Request, Response } from 'express'
 import prisma from '../db'
 import { comparePasswords, createJWT, hashPassword } from '../modules/auth'
+import { ICustomError } from '../types/interfaces'
 
-export const createNewUser = async (req: Request, res: Response) => {
+export const createNewUser = async (req: Request, res: Response, next: NextFunction) => {
     let user
     try {
         user = await prisma.user.create({
@@ -11,8 +12,9 @@ export const createNewUser = async (req: Request, res: Response) => {
                 password: await hashPassword(req.body.password),
             },
         })
-    } catch (e) {
-        console.error(e)
+    } catch (e: unknown) {
+        (e as ICustomError).type = "input";
+        next(e);
     } finally {
         if (user) {
             const token = createJWT(user)

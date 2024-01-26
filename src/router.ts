@@ -1,4 +1,4 @@
-import { Router } from 'express'
+import { NextFunction, Response, Router } from 'express'
 import { body, oneOf } from 'express-validator'
 import { handleInputErrors } from './modules/middlewares'
 import {
@@ -15,6 +15,7 @@ import {
     getUpdates,
     updateUpdate,
 } from './handlers/update'
+import { ICustomError, ICustomRequest } from './types/interfaces'
 
 const router = Router()
 
@@ -94,5 +95,15 @@ router.post(
 )
 
 router.delete('/updatepoint:id', () => {})
+
+router.use((err: ICustomError, req: ICustomRequest, res: Response, next: NextFunction) => {
+    if (err.type === 'auth') {
+        res.status(401).json({message: 'unauthorized'})
+    } else if (err.type === 'input') {
+        res.status(400).json({message: "invalid input"})
+    } else {
+        res.status(500).json({message: "oops thats on us"})
+    }
+})
 
 export default router
