@@ -1,4 +1,4 @@
-import prisma from '../db'
+import prisma from '../db.js'
 import { Response } from 'express'
 import { ICustomRequest } from '../types/interfaces.js'
 import { Product, Update } from '@prisma/client'
